@@ -6,47 +6,37 @@ import Experience from "@/components/sections/Experience";
 import WhyElectric from "@/components/sections/WhyElectric";
 import HowToBuy from "@/components/sections/HowToBuy";
 import Technology from "@/components/sections/Technology";
+import FAQ from "@/components/sections/FAQ";
+import CTA from "@/components/sections/CTA";
 
 export default function Home() {
   return (
     <main className="min-h-screen bg-[#050505] text-white">
-      {/* =========================================================
-          HERO
-      ========================================================= */}
-
+      {/* Apresentação principal */}
       <Hero />
 
-      {/* =========================================================
-          MODELOS
-      ========================================================= */}
-
+      {/* Modelos de scooters */}
       <Models1 />
       <Models2 />
       <Models3 />
 
-      {/* =========================================================
-          A VELTA
-      ========================================================= */}
-
+      {/* Conheça a marca */}
       <Experience />
 
-      {/* =========================================================
-          POR QUE ELÉTRICA
-      ========================================================= */}
-
+      {/* Benefícios da mobilidade elétrica */}
       <WhyElectric />
 
-      {/* =========================================================
-          COMO COMPRAR
-      ========================================================= */}
-
+      {/* Como comprar */}
       <HowToBuy />
 
-      {/* =========================================================
-          TECNOLOGIA
-      ========================================================= */}
-
+      {/* Experiências de clientes */}
       <Technology />
+
+      {/* Dúvidas frequentes */}
+      <FAQ />
+
+      {/* Chamada final para contato */}
+      <CTA />
     </main>
   );
 }

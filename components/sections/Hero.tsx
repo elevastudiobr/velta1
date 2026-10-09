@@ -1,4 +1,21 @@
+"use client";
+
+import { motion, useReducedMotion } from "framer-motion";
+
 export default function Hero() {
+  const shouldReduceMotion = useReducedMotion();
+
+  const fadeUp = {
+    hidden: {
+      opacity: 0,
+      y: shouldReduceMotion ? 0 : 28,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+    },
+  };
+
   return (
     <section
       id="inicio"
@@ -10,13 +27,25 @@ export default function Hero() {
 
       <div className="absolute inset-0">
         {/* Main Hero Image */}
-        <div className="absolute inset-0">
+        <motion.div
+          className="absolute inset-0"
+          initial={
+            shouldReduceMotion
+              ? { opacity: 1, scale: 1 }
+              : { opacity: 0, scale: 1.035 }
+          }
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{
+            duration: shouldReduceMotion ? 0 : 1.6,
+            ease: [0.22, 1, 0.36, 1],
+          }}
+        >
           <img
             src="/images/hero/hero-scooter.webp"
             alt="Scooter elétrica VELTA"
             className="h-full w-full object-cover object-center"
           />
-        </div>
+        </motion.div>
 
         {/* Base Dark Overlay */}
         <div className="absolute inset-0 bg-black/20" />
@@ -58,17 +87,20 @@ export default function Hero() {
           lg:pb-20
         "
       >
-        <div
-          className="
-            w-full
-            max-w-[780px]
-          "
-        >
+        <div className="w-full max-w-[780px]">
           {/* =====================================================
               TITLE
           ===================================================== */}
 
-          <h1
+          <motion.h1
+            variants={fadeUp}
+            initial="hidden"
+            animate="visible"
+            transition={{
+              duration: shouldReduceMotion ? 0 : 1,
+              delay: shouldReduceMotion ? 0 : 0.25,
+              ease: [0.22, 1, 0.36, 1],
+            }}
             className="
               text-[clamp(3.7rem,8vw,7.8rem)]
               font-semibold
@@ -81,16 +113,22 @@ export default function Hero() {
             <br />
             se move
             <br />
-            <span className="text-white/40">
-              diferente.
-            </span>
-          </h1>
+            <span className="text-white/40">diferente.</span>
+          </motion.h1>
 
           {/* =====================================================
               DESCRIPTION
           ===================================================== */}
 
-          <p
+          <motion.p
+            variants={fadeUp}
+            initial="hidden"
+            animate="visible"
+            transition={{
+              duration: shouldReduceMotion ? 0 : 0.85,
+              delay: shouldReduceMotion ? 0 : 0.48,
+              ease: [0.22, 1, 0.36, 1],
+            }}
             className="
               mt-8
               max-w-[500px]
@@ -103,24 +141,24 @@ export default function Hero() {
           >
             Mobilidade elétrica criada para transformar a forma como você
             movimenta a sua vida.
-          </p>
+          </motion.p>
 
           {/* =====================================================
               CTA AREA
           ===================================================== */}
 
-          <div
-            className="
-              mt-10
-              flex
-              flex-wrap
-              items-center
-              gap-4
-            "
+          <motion.div
+            variants={fadeUp}
+            initial="hidden"
+            animate="visible"
+            transition={{
+              duration: shouldReduceMotion ? 0 : 0.85,
+              delay: shouldReduceMotion ? 0 : 0.68,
+              ease: [0.22, 1, 0.36, 1],
+            }}
+            className="mt-10 flex flex-wrap items-center gap-4"
           >
-            {/* ===================================================
-                PRIMARY CTA — EXPLORAR MODELOS
-            =================================================== */}
+            {/* PRIMARY CTA — EXPLORAR MODELOS */}
 
             <a
               href="#modelos"
@@ -145,11 +183,8 @@ export default function Hero() {
                 hover:bg-black/60
               "
             >
-              <span>
-                Explorar modelos
-              </span>
+              <span>Explorar modelos</span>
 
-              {/* Diagonal Arrow */}
               <span
                 className="
                   flex
@@ -174,9 +209,7 @@ export default function Hero() {
               </span>
             </a>
 
-            {/* ===================================================
-                SECONDARY CTA — FALAR COM A VELTA
-            =================================================== */}
+            {/* SECONDARY CTA — FALAR COM A VELTA */}
 
             <a
               href="#contato"
@@ -202,11 +235,8 @@ export default function Hero() {
                 hover:text-white
               "
             >
-              <span>
-                Falar com a VELTA
-              </span>
+              <span>Falar com a VELTA</span>
 
-              {/* Diagonal Arrow */}
               <span
                 className="
                   text-[15px]
@@ -221,7 +251,7 @@ export default function Hero() {
                 ↗
               </span>
             </a>
-          </div>
+          </motion.div>
         </div>
       </div>
 
