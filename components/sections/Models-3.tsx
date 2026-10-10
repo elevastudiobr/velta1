@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useEffect, useState } from "react";
@@ -117,11 +118,16 @@ export default function Models3() {
             className="absolute inset-0 h-full w-full object-cover object-center sm:hidden"
           />
 
-          <div className="absolute inset-0 bg-black/10" />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#050505] via-[#050505]/75 to-transparent" />
-          <div className="absolute inset-y-0 left-0 w-[55%] bg-gradient-to-r from-[#050505] via-[#050505]/55 to-transparent" />
-          <div className="absolute inset-x-0 top-0 h-[30%] bg-gradient-to-b from-[#050505]/80 to-transparent" />
-          <div className="absolute inset-x-0 bottom-0 h-[30%] bg-gradient-to-t from-[#050505] to-transparent" />
+          <div className="absolute inset-0 bg-black/10 max-sm:bg-black/[0.02]" />
+
+          <div className="absolute inset-0 bg-gradient-to-r from-[#050505] via-[#050505]/75 to-transparent max-sm:from-[#050505]/30 max-sm:via-[#050505]/10" />
+
+          <div className="absolute inset-y-0 left-0 w-[55%] bg-gradient-to-r from-[#050505] via-[#050505]/55 to-transparent max-sm:w-[35%] max-sm:from-[#050505]/20 max-sm:via-[#050505]/5" />
+
+          <div className="absolute inset-x-0 top-0 h-[30%] bg-gradient-to-b from-[#050505]/80 to-transparent max-sm:from-[#050505]/35" />
+
+          <div className="absolute inset-x-0 bottom-0 h-[30%] bg-gradient-to-t from-[#050505] to-transparent max-sm:from-[#050505]/65" />
+
           <div className="absolute left-[35%] top-[45%] h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-600/[0.05] blur-[160px]" />
         </div>
 
@@ -183,19 +189,11 @@ export default function Models3() {
                 transition={revealTransition(0.48)}
                 className="mt-12 flex items-center gap-10 sm:gap-12"
               >
-                <AnimatedStat
-                  value={100}
-                  suffix=" km"
-                  label="Autonomia"
-                />
+                <AnimatedStat value={100} suffix=" km" label="Autonomia" />
 
                 <div className="h-11 w-px bg-white/10" />
 
-                <AnimatedStat
-                  value={65}
-                  suffix=" km/h"
-                  label="Velocidade"
-                />
+                <AnimatedStat value={65} suffix=" km/h" label="Velocidade" />
               </motion.div>
 
               {/* CTA ABRE O MODAL */}
