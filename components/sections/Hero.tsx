@@ -109,7 +109,7 @@ export default function Hero() {
           max-w-[1400px]
           px-5
           pb-12
-          pt-24
+          pt-12
           sm:translate-y-8
           sm:px-10
           sm:pb-20
