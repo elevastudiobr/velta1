@@ -1,96 +1,89 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { motion, useReducedMotion, useInView } from "framer-motion";
 
-interface AnimatedStatProps {
+type AnimatedStatProps = {
   value: number;
-  suffix: string;
+  suffix?: string;
   label: string;
-  duration?: number;
-}
+};
 
 export default function AnimatedStat({
   value,
-  suffix,
+  suffix = "",
   label,
-  duration = 1400,
 }: AnimatedStatProps) {
-  const [currentValue, setCurrentValue] = useState(0);
-  const [started, setStarted] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
+  const isInView = useInView(ref, {
+    once: true,
+    amount: 0.5,
+  });
+
+  const shouldReduceMotion = useReducedMotion();
+  const [count, setCount] = useState(0);
+
   useEffect(() => {
-    const element = ref.current;
+    if (!isInView) return;
 
-    if (!element) return;
+    if (shouldReduceMotion) {
+      setCount(value);
+      return;
+    }
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !started) {
-          setStarted(true);
-        }
-      },
-      {
-        threshold: 0.6,
+    let frameId = 0;
+    let startTime: number | null = null;
+
+    // Duração da contagem: 2,4 segundos
+    const duration = 2400;
+
+    const animate = (timestamp: number) => {
+      if (startTime === null) {
+        startTime = timestamp;
       }
-    );
 
-    observer.observe(element);
+      const progress = Math.min(
+        (timestamp - startTime) / duration,
+        1
+      );
 
-    return () => observer.disconnect();
-  }, [started]);
+      // Desacelera suavemente perto do valor final
+      const easedProgress = 1 - Math.pow(1 - progress, 4);
 
-  useEffect(() => {
-    if (!started) return;
-
-    let animationFrame: number;
-    const startTime = performance.now();
-
-    const animate = (currentTime: number) => {
-      const elapsed = currentTime - startTime;
-      const progress = Math.min(elapsed / duration, 1);
-
-      // Ease-out para começar rápido e desacelerar no final
-      const easedProgress = 1 - Math.pow(1 - progress, 3);
-
-      setCurrentValue(Math.round(easedProgress * value));
+      setCount(Math.round(easedProgress * value));
 
       if (progress < 1) {
-        animationFrame = requestAnimationFrame(animate);
+        frameId = requestAnimationFrame(animate);
       }
     };
 
-    animationFrame = requestAnimationFrame(animate);
+    frameId = requestAnimationFrame(animate);
 
-    return () => cancelAnimationFrame(animationFrame);
-  }, [started, value, duration]);
+    return () => {
+      cancelAnimationFrame(frameId);
+    };
+  }, [isInView, shouldReduceMotion, value]);
 
   return (
-    <div ref={ref}>
-      <p
-        className="
-          text-[8px]
-          font-medium
-          uppercase
-          tracking-[0.3em]
-          text-white/25
-        "
-      >
-        {label}
-      </p>
+    <div ref={ref} className="flex flex-col">
+      {/* NUMBER */}
+      <div className="flex items-baseline whitespace-nowrap">
+        <span className="text-[clamp(2rem,3.5vw,2.8rem)] font-medium leading-none tracking-[-0.06em] text-white">
+          {count}
+        </span>
 
-      <p
-        className="
-          mt-2
-          text-base
-          font-medium
-          tabular-nums
-          text-white/80
-        "
-      >
-        {currentValue}
-        {suffix}
-      </p>
+        {suffix && (
+          <span className="ml-1 text-base font-normal tracking-[-0.03em] text-white/65 sm:text-lg">
+            {suffix}
+          </span>
+        )}
+      </div>
+
+      {/* LABEL */}
+      <span className="mt-3 text-[10px] font-medium uppercase tracking-[0.2em] text-white/45 sm:text-[11px]">
+        {label}
+      </span>
     </div>
   );
 }

@@ -1,12 +1,68 @@
 "use client";
 
 import { useState } from "react";
+import { motion, useReducedMotion } from "framer-motion";
 
 export default function Experience() {
   const [activeImage, setActiveImage] = useState<"store" | "team">("store");
+  const shouldReduceMotion = useReducedMotion();
+
+  const fadeUp = {
+    hidden: {
+      opacity: 0,
+      y: shouldReduceMotion ? 0 : 24,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+    },
+  };
+
+  const revealTransition = (delay: number) => ({
+    duration: shouldReduceMotion ? 0 : 0.8,
+    delay: shouldReduceMotion ? 0 : delay,
+    ease: [0.22, 1, 0.36, 1] as const,
+  });
 
   const storeActive = activeImage === "store";
   const teamActive = activeImage === "team";
+
+  const imageBaseClass = `
+    absolute
+    overflow-hidden
+    rounded-[30px]
+    border
+    border-white/[0.10]
+    bg-[#0a0a0a]
+    text-left
+    shadow-[0_30px_80px_rgba(0,0,0,0.50)]
+    transition-all
+    duration-700
+    ease-[cubic-bezier(0.22,1,0.36,1)]
+  `;
+
+  const activeImageClass = `
+    right-0
+    top-0
+    z-10
+    h-[380px]
+    w-[90%]
+    sm:h-[470px]
+    lg:h-[540px]
+    lg:w-[88%]
+  `;
+
+  const inactiveImageClass = `
+    left-0
+    bottom-[3%]
+    z-20
+    h-[210px]
+    w-[46%]
+    sm:h-[270px]
+    sm:w-[45%]
+    lg:h-[300px]
+    lg:w-[44%]
+  `;
 
   return (
     <section
@@ -19,9 +75,8 @@ export default function Experience() {
         text-white
       "
     >
-      {/* =========================================================
-          BACKGROUND
-      ========================================================= */}
+      {/* BACKGROUND */}
+
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <div className="absolute inset-0 bg-[#05060b]" />
 
@@ -105,9 +160,8 @@ export default function Experience() {
         />
       </div>
 
-      {/* =========================================================
-          CONTENT
-      ========================================================= */}
+      {/* CONTENT */}
+
       <div
         className="
           relative
@@ -138,11 +192,17 @@ export default function Experience() {
             lg:gap-16
           "
         >
-          {/* =====================================================
-              TEXT
-          ===================================================== */}
+          {/* TEXT */}
+
           <div className="relative z-30 max-w-[560px]">
-            <div className="flex items-center gap-4">
+            <motion.div
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
+              transition={revealTransition(0.1)}
+              className="flex items-center gap-4"
+            >
               <span className="h-px w-8 bg-white/20" />
 
               <span
@@ -156,9 +216,14 @@ export default function Experience() {
               >
                 A VELTA
               </span>
-            </div>
+            </motion.div>
 
-            <h2
+            <motion.h2
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
+              transition={revealTransition(0.2)}
               className="
                 mt-6
                 text-[clamp(3.5rem,7vw,6.5rem)]
@@ -171,29 +236,59 @@ export default function Experience() {
               Conheça
               <br />
               <span className="text-white/40">a VELTA.</span>
-            </h2>
+            </motion.h2>
 
             <div className="mt-8 max-w-[500px] space-y-5">
-              <p className="text-sm leading-7 text-white/60 sm:text-[15px]">
+              <motion.p
+                variants={fadeUp}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.3 }}
+                transition={revealTransition(0.32)}
+                className="text-sm leading-7 text-white/60 sm:text-[15px]"
+              >
                 A VELTA nasceu para tornar a mobilidade elétrica mais simples,
                 acessível e conectada com a vida real.
-              </p>
+              </motion.p>
 
-              <p className="text-sm leading-7 text-white/40 sm:text-[15px]">
+              <motion.p
+                variants={fadeUp}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.3 }}
+                transition={revealTransition(0.42)}
+                className="text-sm leading-7 text-white/40 sm:text-[15px]"
+              >
                 Mais do que vender scooters, queremos oferecer uma nova forma
                 de se movimentar. Por isso, reunimos tecnologia, design e
                 praticidade em modelos pensados para diferentes momentos da
                 sua rotina.
-              </p>
+              </motion.p>
 
-              <p className="text-sm leading-7 text-white/40 sm:text-[15px]">
+              <motion.p
+                variants={fadeUp}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.3 }}
+                transition={revealTransition(0.52)}
+                className="text-sm leading-7 text-white/40 sm:text-[15px]"
+              >
                 Na nossa loja, você pode conhecer os modelos de perto,
                 entender suas características e conversar diretamente com
                 nossa equipe para encontrar a opção que mais combina com você.
-              </p>
+              </motion.p>
             </div>
 
-            <div className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3">
+            {/* KEYWORDS */}
+
+            <motion.div
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
+              transition={revealTransition(0.62)}
+              className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3"
+            >
               <span
                 className="
                   text-[9px]
@@ -233,13 +328,24 @@ export default function Experience() {
               >
                 Design
               </span>
-            </div>
+            </motion.div>
           </div>
 
-          {/* =====================================================
-              IMAGENS
-          ===================================================== */}
-          <div
+          {/* IMAGES */}
+
+          <motion.div
+            initial={
+              shouldReduceMotion
+                ? { opacity: 1, x: 0 }
+                : { opacity: 0, x: 36 }
+            }
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{
+              duration: shouldReduceMotion ? 0 : 1,
+              delay: shouldReduceMotion ? 0 : 0.2,
+              ease: [0.22, 1, 0.36, 1],
+            }}
             className="
               relative
               mx-auto
@@ -250,7 +356,8 @@ export default function Experience() {
               lg:h-[640px]
             "
           >
-            {/* Glow central */}
+            {/* Central glow */}
+
             <div
               className="
                 pointer-events-none
@@ -267,54 +374,16 @@ export default function Experience() {
               "
             />
 
-            {/* =================================================
-                STORE
-            ================================================= */}
+            {/* STORE */}
+
             <button
               type="button"
               onClick={() => setActiveImage("store")}
               aria-label="Mostrar foto da loja"
+              aria-pressed={storeActive}
               className={`
-                absolute
-                overflow-hidden
-                rounded-[30px]
-                border
-                border-white/[0.10]
-                bg-[#0a0a0a]
-                text-left
-                shadow-[0_30px_80px_rgba(0,0,0,0.50)]
-                transition-all
-                duration-700
-                ease-[cubic-bezier(0.22,1,0.36,1)]
-
-                ${
-                  storeActive
-                    ? `
-                      right-0
-                      top-0
-                      z-10
-                      h-[380px]
-                      w-[90%]
-
-                      sm:h-[470px]
-
-                      lg:h-[540px]
-                      lg:w-[88%]
-                    `
-                    : `
-                      left-0
-                      bottom-[3%]
-                      z-20
-                      h-[210px]
-                      w-[46%]
-
-                      sm:h-[270px]
-                      sm:w-[45%]
-
-                      lg:h-[300px]
-                      lg:w-[44%]
-                    `
-                }
+                ${imageBaseClass}
+                ${storeActive ? activeImageClass : inactiveImageClass}
               `}
             >
               <img
@@ -359,7 +428,6 @@ export default function Experience() {
                   duration-500
                   sm:bottom-8
                   sm:left-8
-
                   ${
                     storeActive
                       ? "translate-y-0 opacity-100"
@@ -383,54 +451,16 @@ export default function Experience() {
               </div>
             </button>
 
-            {/* =================================================
-                TEAM
-            ================================================= */}
+            {/* TEAM */}
+
             <button
               type="button"
               onClick={() => setActiveImage("team")}
               aria-label="Mostrar foto da equipe"
+              aria-pressed={teamActive}
               className={`
-                absolute
-                overflow-hidden
-                rounded-[26px]
-                border
-                border-white/[0.12]
-                bg-[#0a0a0a]
-                text-left
-                shadow-[0_25px_60px_rgba(0,0,0,0.50)]
-                transition-all
-                duration-700
-                ease-[cubic-bezier(0.22,1,0.36,1)]
-
-                ${
-                  teamActive
-                    ? `
-                      right-0
-                      top-0
-                      z-10
-                      h-[380px]
-                      w-[90%]
-
-                      sm:h-[470px]
-
-                      lg:h-[540px]
-                      lg:w-[88%]
-                    `
-                    : `
-                      left-0
-                      bottom-[3%]
-                      z-20
-                      h-[210px]
-                      w-[46%]
-
-                      sm:h-[270px]
-                      sm:w-[45%]
-
-                      lg:h-[300px]
-                      lg:w-[44%]
-                    `
-                }
+                ${imageBaseClass}
+                ${teamActive ? activeImageClass : inactiveImageClass}
               `}
             >
               <img
@@ -475,7 +505,6 @@ export default function Experience() {
                   duration-500
                   sm:bottom-8
                   sm:left-8
-
                   ${
                     teamActive
                       ? "translate-y-0 opacity-100"
@@ -498,13 +527,12 @@ export default function Experience() {
                 </span>
               </div>
             </button>
-          </div>
+          </motion.div>
         </div>
       </div>
 
-      {/* =========================================================
-          LINHA FINAL
-      ========================================================= */}
+      {/* BOTTOM LINE */}
+
       <div
         className="
           pointer-events-none

@@ -1,4 +1,7 @@
+
 "use client";
+
+import { motion, useReducedMotion } from "framer-motion";
 
 const clients = [
   {
@@ -21,98 +24,165 @@ const clients = [
   },
 ];
 
+const fadeUp = {
+  hidden: {
+    opacity: 0,
+    y: 28,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+  },
+};
+
+const revealTransition = (delay = 0) => ({
+  duration: 0.85,
+  delay,
+  ease: [0.22, 1, 0.36, 1] as const,
+});
+
 export default function Technology() {
+  const shouldReduceMotion = useReducedMotion();
+
+  const entrance = (delay = 0) => ({
+    initial: shouldReduceMotion ? false : "hidden",
+    whileInView: "visible" as const,
+    viewport: {
+      once: true,
+      amount: 0.2,
+    },
+    variants: fadeUp,
+    transition: revealTransition(shouldReduceMotion ? 0 : delay),
+  });
+
   return (
     <section
       id="tecnologia"
       className="relative overflow-hidden bg-[#050505] text-white"
     >
-      {/* =========================================================
-          AMBIENT LIGHT
-      ========================================================= */}
+      {/* AMBIENT LIGHT */}
 
       <div className="pointer-events-none absolute left-[-15%] top-[20%] h-[400px] w-[400px] rounded-full bg-blue-600/[0.035] blur-[150px]" />
 
       <div className="pointer-events-none absolute bottom-[-20%] right-[-10%] h-[400px] w-[400px] rounded-full bg-blue-600/[0.025] blur-[150px]" />
 
-      {/* =========================================================
-          CONTENT
-      ========================================================= */}
+      {/* CONTENT */}
 
       <div className="relative mx-auto w-full max-w-[1450px] px-6 py-24 sm:px-10 sm:py-28 lg:px-14 lg:py-32">
-        {/* =======================================================
-            HEADER
-        ======================================================= */}
+        {/* HEADER */}
 
         <div className="flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
-          <div>
-            <div className="flex items-center gap-4">
+          <motion.div {...entrance(0)}>
+            <motion.div
+              className="flex items-center gap-4"
+              {...entrance(0.05)}
+            >
               <span className="h-px w-7 bg-white/40" />
 
               <span className="text-[9px] font-medium uppercase tracking-[0.38em] text-white/40">
                 Clientes VELTA
               </span>
-            </div>
+            </motion.div>
 
-            <h2 className="mt-7 text-[clamp(2.8rem,5vw,5rem)] font-light leading-[0.92] tracking-[-0.06em]">
+            <motion.h2
+              className="mt-7 text-[clamp(2.8rem,5vw,5rem)] font-light leading-[0.92] tracking-[-0.06em]"
+              {...entrance(0.12)}
+            >
               Quem escolhe
               <br />
               <span className="text-white/35">a VELTA.</span>
-            </h2>
-          </div>
+            </motion.h2>
+          </motion.div>
 
-          <p className="max-w-[360px] text-xs leading-5 text-white/35 lg:mb-1">
+          <motion.p
+            className="max-w-[360px] text-xs leading-5 text-white/35 lg:mb-1"
+            {...entrance(0.2)}
+          >
             Experiências reais de quem decidiu conhecer uma nova forma de
             mobilidade.
-          </p>
+          </motion.p>
         </div>
 
-        {/* =======================================================
-            CLIENTS GRID
-        ======================================================= */}
+        {/* CLIENTS GRID */}
 
         <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:mt-20 lg:grid-cols-3 lg:gap-6">
-          {clients.map((client) => (
-            <article key={client.number} className="group">
-              {/* =================================================
-                  IMAGE
-              ================================================= */}
+          {clients.map((client, index) => (
+            <motion.article
+              key={client.number}
+              className="group"
+              initial={shouldReduceMotion ? false : "hidden"}
+              whileInView="visible"
+              viewport={{
+                once: true,
+                amount: 0.15,
+              }}
+              variants={fadeUp}
+              transition={revealTransition(
+                shouldReduceMotion ? 0 : index * 0.16
+              )}
+            >
+              {/* IMAGE */}
 
               <div className="relative aspect-[4/5] overflow-hidden bg-[#0b0b0b]">
-                <img
+                <motion.img
                   src={client.image}
                   alt={`Cliente VELTA - ${client.number}`}
                   className="h-full w-full object-cover object-center transition-transform duration-[1200ms] ease-out group-hover:scale-[1.025]"
+                  initial={
+                    shouldReduceMotion
+                      ? false
+                      : { opacity: 0, scale: 1.06 }
+                  }
+                  whileInView={{
+                    opacity: 1,
+                    scale: 1,
+                  }}
+                  viewport={{
+                    once: true,
+                    amount: 0.15,
+                  }}
+                  transition={{
+                    duration: shouldReduceMotion ? 0 : 1.2,
+                    delay: shouldReduceMotion ? 0 : index * 0.12,
+                    ease: [0.22, 1, 0.36, 1],
+                  }}
                 />
 
-                {/* subtle dark overlay */}
+                {/* DARK OVERLAY */}
 
                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-black/5 opacity-80" />
 
-                {/* image number */}
+                {/* IMAGE NUMBER */}
 
-                <div className="absolute left-5 top-5">
+                <motion.div
+                  className="absolute left-5 top-5"
+                  {...entrance(0.15 + index * 0.12)}
+                >
                   <span className="text-[8px] font-medium tracking-[0.3em] text-white/55">
                     {client.number}
                   </span>
-                </div>
+                </motion.div>
 
-                {/* bottom line */}
+                {/* BOTTOM LINE */}
 
-                <div className="absolute bottom-5 left-5 right-5 flex items-center gap-3">
+                <motion.div
+                  className="absolute bottom-5 left-5 right-5 flex items-center gap-3"
+                  {...entrance(0.2 + index * 0.12)}
+                >
                   <span className="h-px w-6 bg-white/50 transition-all duration-500 group-hover:w-10" />
 
                   <span className="text-[8px] font-medium uppercase tracking-[0.3em] text-white/55">
                     Experiência VELTA
                   </span>
-                </div>
+                </motion.div>
               </div>
 
-              {/* =================================================
-                  TEXT
-              ================================================= */}
+              {/* TEXT */}
 
-              <div className="pt-5">
+              <motion.div
+                className="pt-5"
+                {...entrance(0.18 + index * 0.12)}
+              >
                 <h3 className="text-lg font-light tracking-[-0.025em] text-white/85">
                   {client.title}
                 </h3>
@@ -120,16 +190,17 @@ export default function Technology() {
                 <p className="mt-2 max-w-[320px] text-[11px] leading-5 text-white/30">
                   {client.text}
                 </p>
-              </div>
-            </article>
+              </motion.div>
+            </motion.article>
           ))}
         </div>
 
-        {/* =======================================================
-            BOTTOM LINE
-        ======================================================= */}
+        {/* BOTTOM LINE */}
 
-        <div className="mt-16 border-t border-white/[0.08] pt-6 lg:mt-20">
+        <motion.div
+          className="mt-16 border-t border-white/[0.08] pt-6 lg:mt-20"
+          {...entrance(0.1)}
+        >
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <p className="text-[11px] text-white/30">
               Uma nova forma de se mover começa com uma escolha.
@@ -143,12 +214,10 @@ export default function Technology() {
               </span>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
 
-      {/* =========================================================
-          TRANSITION
-      ========================================================= */}
+      {/* TRANSITION */}
 
       <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-[#050505] to-transparent" />
     </section>

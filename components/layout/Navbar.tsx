@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useEffect, useState } from "react";
@@ -5,6 +6,9 @@ import { useEffect, useState } from "react";
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+
+  const whatsappUrl =
+    "https://wa.me/5519992728449?text=Ol%C3%A1%21%20Tenho%20interesse%20em%20conhecer%20a%20VELTA.";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -23,6 +27,21 @@ export default function Navbar() {
   const handleNavigation = (id: string) => {
     setMenuOpen(false);
 
+    if (id === "modelos") {
+      const section =
+        document.getElementById("modelos") ||
+        document.getElementById("modelo-1");
+
+      if (section) {
+        section.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }
+
+      return;
+    }
+
     const section = document.getElementById(id);
 
     if (section) {
@@ -31,6 +50,11 @@ export default function Navbar() {
         block: "start",
       });
     }
+  };
+
+  const handleWhatsApp = () => {
+    setMenuOpen(false);
+    window.open(whatsappUrl, "_blank", "noopener,noreferrer");
   };
 
   return (
@@ -98,7 +122,7 @@ export default function Navbar() {
         {/* Desktop CTA */}
         <button
           type="button"
-          onClick={() => handleNavigation("contato")}
+          onClick={handleWhatsApp}
           className="hidden items-center justify-center rounded-full border border-white/15 bg-white/[0.06] px-5 py-2.5 text-[12px] font-medium tracking-wide text-white backdrop-blur-md transition-all duration-300 hover:border-white/25 hover:bg-white/[0.11] lg:flex"
         >
           Conhecer a VELTA
@@ -169,7 +193,7 @@ export default function Navbar() {
 
             <button
               type="button"
-              onClick={() => handleNavigation("contato")}
+              onClick={handleWhatsApp}
               className="mt-5 flex h-12 items-center justify-center rounded-full border border-white/15 bg-white/[0.06] text-sm font-medium text-white transition-colors hover:bg-white/[0.1]"
             >
               Conhecer a VELTA

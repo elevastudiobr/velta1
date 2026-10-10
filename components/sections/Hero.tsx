@@ -1,9 +1,13 @@
+
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
 
 export default function Hero() {
   const shouldReduceMotion = useReducedMotion();
+
+  const whatsappUrl =
+    "https://wa.me/5519992728449?text=Ol%C3%A1%21%20Tenho%20interesse%20em%20conhecer%20a%20VELTA.";
 
   const fadeUp = {
     hidden: {
@@ -16,17 +20,26 @@ export default function Hero() {
     },
   };
 
+  const handleExploreModels = () => {
+    const section =
+      document.getElementById("modelos") ||
+      document.getElementById("modelo-1");
+
+    if (section) {
+      section.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  };
+
   return (
     <section
       id="inicio"
       className="relative flex min-h-screen w-full items-end overflow-hidden bg-[#050505]"
     >
-      {/* =========================================================
-          BACKGROUND
-      ========================================================= */}
-
+      {/* BACKGROUND */}
       <div className="absolute inset-0">
-        {/* Main Hero Image */}
         <motion.div
           className="absolute inset-0"
           initial={
@@ -47,29 +60,20 @@ export default function Hero() {
           />
         </motion.div>
 
-        {/* Base Dark Overlay */}
         <div className="absolute inset-0 bg-black/20" />
 
-        {/* Blue Atmosphere */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_68%_42%,rgba(45,85,255,0.18),transparent_38%)]" />
 
-        {/* Left Contrast */}
         <div className="absolute inset-0 bg-gradient-to-r from-[#050505]/80 via-[#050505]/25 to-transparent" />
 
-        {/* Bottom Cinematic Fade */}
         <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/20 to-transparent" />
 
-        {/* Subtle Top Darkening */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/25 via-transparent to-transparent" />
 
-        {/* Subtle Blue Light */}
         <div className="absolute -right-[10%] top-[20%] h-[45%] w-[35%] rounded-full bg-blue-500/[0.035] blur-[120px]" />
       </div>
 
-      {/* =========================================================
-          HERO CONTENT
-      ========================================================= */}
-
+      {/* HERO CONTENT */}
       <div
         className="
           relative
@@ -88,10 +92,7 @@ export default function Hero() {
         "
       >
         <div className="w-full max-w-[780px]">
-          {/* =====================================================
-              TITLE
-          ===================================================== */}
-
+          {/* TITLE */}
           <motion.h1
             variants={fadeUp}
             initial="hidden"
@@ -116,10 +117,7 @@ export default function Hero() {
             <span className="text-white/40">diferente.</span>
           </motion.h1>
 
-          {/* =====================================================
-              DESCRIPTION
-          ===================================================== */}
-
+          {/* DESCRIPTION */}
           <motion.p
             variants={fadeUp}
             initial="hidden"
@@ -143,10 +141,7 @@ export default function Hero() {
             movimenta a sua vida.
           </motion.p>
 
-          {/* =====================================================
-              CTA AREA
-          ===================================================== */}
-
+          {/* CTA AREA */}
           <motion.div
             variants={fadeUp}
             initial="hidden"
@@ -158,10 +153,10 @@ export default function Hero() {
             }}
             className="mt-10 flex flex-wrap items-center gap-4"
           >
-            {/* PRIMARY CTA — EXPLORAR MODELOS */}
-
-            <a
-              href="#modelos"
+            {/* EXPLORAR MODELOS */}
+            <button
+              type="button"
+              onClick={handleExploreModels}
               className="
                 group
                 flex
@@ -207,12 +202,13 @@ export default function Hero() {
               >
                 ↗
               </span>
-            </a>
+            </button>
 
-            {/* SECONDARY CTA — FALAR COM A VELTA */}
-
+            {/* FALAR COM A VELTA */}
             <a
-              href="#contato"
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
               className="
                 group
                 flex
@@ -255,10 +251,7 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* =========================================================
-          DECORATIVE LIGHT
-      ========================================================= */}
-
+      {/* DECORATIVE LIGHT */}
       <div
         className="
           pointer-events-none
@@ -276,10 +269,7 @@ export default function Hero() {
         "
       />
 
-      {/* =========================================================
-          MOBILE IMAGE CONTRAST
-      ========================================================= */}
-
+      {/* MOBILE IMAGE CONTRAST */}
       <div
         className="
           pointer-events-none
