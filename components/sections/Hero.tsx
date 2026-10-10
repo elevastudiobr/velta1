@@ -56,6 +56,7 @@ export default function Hero() {
       className="relative flex min-h-[100svh] w-full items-end overflow-hidden bg-[#050505] sm:min-h-screen"
     >
       {/* BACKGROUND */}
+
       <div className="absolute inset-0">
         <motion.div
           className="absolute inset-0"
@@ -89,13 +90,15 @@ export default function Hero() {
 
         <div className="absolute -right-[10%] top-[20%] h-[45%] w-[35%] rounded-full bg-blue-500/[0.035] blur-[120px]" />
 
-        {/* CONTRASTE MOBILE */}
+        {/* MOBILE CONTRAST */}
+
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(5,5,5,0.50)_0%,rgba(5,5,5,0.18)_75%,transparent_100%)] sm:hidden" />
 
         <div className="absolute inset-x-0 bottom-0 h-[72%] bg-gradient-to-t from-[#050505] via-[#050505]/75 to-transparent sm:hidden" />
       </div>
 
       {/* HERO CONTENT */}
+
       <div
         className="
           relative
@@ -105,8 +108,8 @@ export default function Hero() {
           w-full
           max-w-[1400px]
           px-5
-          pb-9
-          pt-28
+          pb-12
+          pt-24
           sm:translate-y-8
           sm:px-10
           sm:pb-20
@@ -116,6 +119,7 @@ export default function Hero() {
       >
         <div className="w-full max-w-[780px]">
           {/* TITLE */}
+
           <motion.h1
             variants={fadeUp}
             initial="hidden"
@@ -126,7 +130,7 @@ export default function Hero() {
               ease: [0.22, 1, 0.36, 1],
             }}
             className="
-              text-[clamp(2.8rem,10vw,3.5rem)]
+              text-[clamp(3.25rem,10.8vw,5rem)]
               font-semibold
               leading-[0.88]
               tracking-[-0.065em]
@@ -143,6 +147,7 @@ export default function Hero() {
           </motion.h1>
 
           {/* DESCRIPTION */}
+
           <motion.p
             variants={fadeUp}
             initial="hidden"
@@ -153,10 +158,10 @@ export default function Hero() {
               ease: [0.22, 1, 0.36, 1],
             }}
             className="
-              mt-4
-              max-w-[310px]
-              text-[12px]
-              leading-[1.65]
+              mt-5
+              max-w-[340px]
+              text-[13px]
+              leading-[1.75]
               text-white/60
               sm:mt-8
               sm:max-w-[500px]
@@ -169,6 +174,7 @@ export default function Hero() {
           </motion.p>
 
           {/* CTA AREA */}
+
           <motion.div
             variants={fadeUp}
             initial="hidden"
@@ -182,17 +188,15 @@ export default function Hero() {
               mt-6
               flex
               w-full
-              flex-col
-              items-start
-              gap-2.5
-              min-[360px]:flex-row
-              min-[360px]:flex-wrap
-              min-[360px]:items-center
+              flex-row
+              items-center
+              gap-2
               sm:mt-10
               sm:gap-4
             "
           >
             {/* EXPLORAR MODELOS */}
+
             <button
               type="button"
               onClick={handleExploreModels}
@@ -200,17 +204,17 @@ export default function Hero() {
                 group
                 inline-flex
                 h-[42px]
-                w-full
-                max-w-[280px]
+                min-w-0
+                flex-1
                 items-center
                 justify-between
-                gap-3
+                gap-1.5
                 rounded-full
                 border
                 border-white/[0.14]
                 bg-black/45
-                px-4
-                text-[11px]
+                px-3
+                text-[10px]
                 font-medium
                 text-white
                 backdrop-blur-xl
@@ -218,17 +222,17 @@ export default function Hero() {
                 duration-300
                 hover:border-white/[0.25]
                 hover:bg-black/60
-                min-[360px]:h-[40px]
-                min-[360px]:w-auto
-                min-[360px]:justify-center
-                min-[360px]:px-3.5
                 sm:h-[52px]
+                sm:flex-none
+                sm:justify-center
                 sm:gap-5
                 sm:px-6
                 sm:text-[13px]
               "
             >
-              <span className="whitespace-nowrap">Explorar modelos</span>
+              <span className="whitespace-nowrap">
+                Explorar modelos
+              </span>
 
               <span
                 className="
@@ -257,6 +261,7 @@ export default function Hero() {
             </button>
 
             {/* FALAR COM A VELTA */}
+
             <a
               href={whatsappUrl}
               target="_blank"
@@ -265,17 +270,17 @@ export default function Hero() {
                 group
                 inline-flex
                 h-[42px]
-                w-full
-                max-w-[280px]
+                min-w-0
+                flex-1
                 items-center
-                justify-between
-                gap-3
+                justify-center
+                gap-1.5
                 rounded-full
                 border
                 border-white/[0.16]
                 bg-white/[0.10]
-                px-4
-                text-[11px]
+                px-2
+                text-[10px]
                 font-medium
                 text-white/85
                 backdrop-blur-xl
@@ -284,19 +289,18 @@ export default function Hero() {
                 hover:border-white/[0.28]
                 hover:bg-white/[0.16]
                 hover:text-white
-                min-[360px]:h-[40px]
-                min-[360px]:w-auto
-                min-[360px]:justify-center
-                min-[360px]:px-3.5
                 sm:h-[52px]
+                sm:flex-none
                 sm:gap-3
                 sm:px-6
                 sm:text-[13px]
               "
             >
-              <span className="whitespace-nowrap">Falar com a VELTA</span>
+              <span className="whitespace-nowrap">
+                Falar com a VELTA
+              </span>
 
-              <span className="text-white/65">
+              <span className="shrink-0 text-white/65">
                 <ArrowUpRight />
               </span>
             </a>
@@ -305,6 +309,7 @@ export default function Hero() {
       </div>
 
       {/* DECORATIVE LIGHT */}
+
       <div
         className="
           pointer-events-none
