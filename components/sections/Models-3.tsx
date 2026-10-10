@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useEffect, useState } from "react";
@@ -102,15 +101,10 @@ export default function Models3() {
           />
 
           <div className="absolute inset-0 bg-black/10" />
-
           <div className="absolute inset-0 bg-gradient-to-r from-[#050505] via-[#050505]/75 to-transparent" />
-
           <div className="absolute inset-y-0 left-0 w-[55%] bg-gradient-to-r from-[#050505] via-[#050505]/55 to-transparent" />
-
           <div className="absolute inset-x-0 top-0 h-[30%] bg-gradient-to-b from-[#050505]/80 to-transparent" />
-
           <div className="absolute inset-x-0 bottom-0 h-[30%] bg-gradient-to-t from-[#050505] to-transparent" />
-
           <div className="absolute left-[35%] top-[45%] h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-600/[0.05] blur-[160px]" />
         </div>
 
@@ -130,9 +124,7 @@ export default function Models3() {
                 <span className="text-[10px] font-medium tracking-[0.4em] text-white/30">
                   03
                 </span>
-
                 <span className="h-px w-8 bg-white/10" />
-
                 <span className="text-[9px] font-medium uppercase tracking-[0.4em] text-white/30">
                   Premium
                 </span>
@@ -208,8 +200,21 @@ export default function Models3() {
                 >
                   <span>Conhecer a VELTA PRO</span>
 
-                  <span className="text-[18px] leading-none text-white/60 transition-all duration-500 group-hover:translate-x-1 group-hover:text-white">
-                    ↗
+                  <span className="flex h-7 w-7 items-center justify-center rounded-full border border-white/[0.16] text-white/60 transition-all duration-500 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:border-white/30 group-hover:text-white">
+                    <svg
+                      viewBox="0 0 20 20"
+                      fill="none"
+                      className="h-[14px] w-[14px]"
+                      aria-hidden="true"
+                    >
+                      <path
+                        d="M5 15L15 5M6 5H15V14"
+                        stroke="currentColor"
+                        strokeWidth="1.35"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
                   </span>
                 </button>
               </motion.div>
@@ -424,8 +429,21 @@ export default function Models3() {
                         Comprar pelo WhatsApp
                       </span>
 
-                      <span className="text-base transition-transform duration-300 group-hover:translate-x-1">
-                        ↗
+                      <span className="transition-transform duration-300 group-hover:translate-x-1">
+                        <svg
+                          viewBox="0 0 20 20"
+                          fill="none"
+                          className="h-[14px] w-[14px]"
+                          aria-hidden="true"
+                        >
+                          <path
+                            d="M5 15L15 5M6 5H15V14"
+                            stroke="currentColor"
+                            strokeWidth="1.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
                       </span>
                     </a>
                   </div>

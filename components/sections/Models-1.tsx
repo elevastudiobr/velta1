@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useEffect, useState } from "react";
@@ -207,8 +206,21 @@ export default function Models1() {
                 >
                   <span>Conhecer a VELTA ONE</span>
 
-                  <span className="text-[18px] leading-none text-white/60 transition-all duration-500 group-hover:translate-x-1 group-hover:text-white">
-                    ↗
+                  <span className="flex h-7 w-7 items-center justify-center rounded-full border border-white/[0.16] text-white/60 transition-all duration-500 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:border-white/30 group-hover:text-white">
+                    <svg
+                      viewBox="0 0 20 20"
+                      fill="none"
+                      className="h-[14px] w-[14px]"
+                      aria-hidden="true"
+                    >
+                      <path
+                        d="M5 15L15 5M6 5H15V14"
+                        stroke="currentColor"
+                        strokeWidth="1.35"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
                   </span>
                 </button>
               </motion.div>
@@ -423,8 +435,21 @@ export default function Models1() {
                         Comprar pelo WhatsApp
                       </span>
 
-                      <span className="text-base transition-transform duration-300 group-hover:translate-x-1">
-                        ↗
+                      <span className="transition-transform duration-300 group-hover:translate-x-1">
+                        <svg
+                          viewBox="0 0 20 20"
+                          fill="none"
+                          className="h-[14px] w-[14px]"
+                          aria-hidden="true"
+                        >
+                          <path
+                            d="M5 15L15 5M6 5H15V14"
+                            stroke="currentColor"
+                            strokeWidth="1.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
                       </span>
                     </a>
                   </div>

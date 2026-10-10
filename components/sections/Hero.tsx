@@ -1,4 +1,3 @@
-
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
@@ -33,12 +32,30 @@ export default function Hero() {
     }
   };
 
+  const ArrowUpRight = () => (
+    <svg
+      viewBox="0 0 20 20"
+      fill="none"
+      className="h-[15px] w-[15px] transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+      aria-hidden="true"
+    >
+      <path
+        d="M5 15L15 5M6 5H15V14"
+        stroke="currentColor"
+        strokeWidth="1.35"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+
   return (
     <section
       id="inicio"
-      className="relative flex min-h-screen w-full items-end overflow-hidden bg-[#050505]"
+      className="relative flex min-h-[100svh] w-full items-end overflow-hidden bg-[#050505] sm:min-h-screen"
     >
       {/* BACKGROUND */}
+
       <div className="absolute inset-0">
         <motion.div
           className="absolute inset-0"
@@ -56,7 +73,7 @@ export default function Hero() {
           <img
             src="/images/hero/hero-scooter.webp"
             alt="Scooter elétrica VELTA"
-            className="h-full w-full object-cover object-center"
+            className="h-full w-full object-cover object-[58%_center] sm:object-center"
           />
         </motion.div>
 
@@ -71,9 +88,16 @@ export default function Hero() {
         <div className="absolute inset-0 bg-gradient-to-b from-black/25 via-transparent to-transparent" />
 
         <div className="absolute -right-[10%] top-[20%] h-[45%] w-[35%] rounded-full bg-blue-500/[0.035] blur-[120px]" />
+
+        {/* MOBILE CONTRAST */}
+
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(5,5,5,0.50)_0%,rgba(5,5,5,0.18)_75%,transparent_100%)] sm:hidden" />
+
+        <div className="absolute inset-x-0 bottom-0 h-[72%] bg-gradient-to-t from-[#050505] via-[#050505]/75 to-transparent sm:hidden" />
       </div>
 
       {/* HERO CONTENT */}
+
       <div
         className="
           relative
@@ -82,17 +106,19 @@ export default function Hero() {
           flex
           w-full
           max-w-[1400px]
-          translate-y-8
-          px-6
-          pb-16
+          px-5
+          pb-12
+          pt-32
+          sm:translate-y-8
           sm:px-10
           sm:pb-20
+          sm:pt-0
           lg:px-16
-          lg:pb-20
         "
       >
         <div className="w-full max-w-[780px]">
           {/* TITLE */}
+
           <motion.h1
             variants={fadeUp}
             initial="hidden"
@@ -103,11 +129,13 @@ export default function Hero() {
               ease: [0.22, 1, 0.36, 1],
             }}
             className="
-              text-[clamp(3.7rem,8vw,7.8rem)]
+              text-[clamp(3.25rem,10.8vw,5rem)]
               font-semibold
-              leading-[0.84]
+              leading-[0.88]
               tracking-[-0.065em]
               text-white
+              sm:text-[clamp(3.7rem,8vw,7.8rem)]
+              sm:leading-[0.84]
             "
           >
             O futuro
@@ -118,6 +146,7 @@ export default function Hero() {
           </motion.h1>
 
           {/* DESCRIPTION */}
+
           <motion.p
             variants={fadeUp}
             initial="hidden"
@@ -128,11 +157,13 @@ export default function Hero() {
               ease: [0.22, 1, 0.36, 1],
             }}
             className="
-              mt-8
-              max-w-[500px]
-              text-sm
-              leading-6
-              text-white/55
+              mt-5
+              max-w-[340px]
+              text-[13px]
+              leading-[1.75]
+              text-white/60
+              sm:mt-8
+              sm:max-w-[500px]
               sm:text-[15px]
               sm:leading-6
             "
@@ -142,6 +173,7 @@ export default function Hero() {
           </motion.p>
 
           {/* CTA AREA */}
+
           <motion.div
             variants={fadeUp}
             initial="hidden"
@@ -151,24 +183,39 @@ export default function Hero() {
               delay: shouldReduceMotion ? 0 : 0.68,
               ease: [0.22, 1, 0.36, 1],
             }}
-            className="mt-10 flex flex-wrap items-center gap-4"
+            className="
+              mt-7
+              flex
+              w-full
+              flex-col
+              items-stretch
+              gap-3
+              min-[420px]:flex-row
+              min-[420px]:flex-wrap
+              min-[420px]:items-center
+              sm:mt-10
+              sm:gap-4
+            "
           >
             {/* EXPLORAR MODELOS */}
+
             <button
               type="button"
               onClick={handleExploreModels}
               className="
                 group
-                flex
-                h-[52px]
+                inline-flex
+                h-[50px]
+                w-full
                 items-center
+                justify-between
                 gap-5
                 rounded-full
                 border
                 border-white/[0.14]
                 bg-black/45
-                px-6
-                text-[13px]
+                px-5
+                text-[12px]
                 font-medium
                 text-white
                 backdrop-blur-xl
@@ -176,6 +223,13 @@ export default function Hero() {
                 duration-300
                 hover:border-white/[0.25]
                 hover:bg-black/60
+                min-[420px]:w-auto
+                min-[420px]:justify-center
+                min-[420px]:px-5
+                sm:h-[52px]
+                sm:gap-5
+                sm:px-6
+                sm:text-[13px]
               "
             >
               <span>Explorar modelos</span>
@@ -185,12 +239,12 @@ export default function Hero() {
                   flex
                   h-7
                   w-7
+                  shrink-0
                   items-center
                   justify-center
                   rounded-full
                   border
                   border-white/[0.16]
-                  text-[14px]
                   text-white/80
                   transition-all
                   duration-300
@@ -200,51 +254,50 @@ export default function Hero() {
                   group-hover:text-white
                 "
               >
-                ↗
+                <ArrowUpRight />
               </span>
             </button>
 
             {/* FALAR COM A VELTA */}
+
             <a
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="
                 group
-                flex
-                h-[52px]
+                inline-flex
+                h-[50px]
+                w-full
                 items-center
-                gap-3
+                justify-between
+                gap-4
                 rounded-full
                 border
                 border-white/[0.16]
                 bg-white/[0.10]
-                px-6
-                text-[13px]
+                px-5
+                text-[12px]
                 font-medium
-                text-white/80
+                text-white/85
                 backdrop-blur-xl
                 transition-all
                 duration-300
                 hover:border-white/[0.28]
                 hover:bg-white/[0.16]
                 hover:text-white
+                min-[420px]:w-auto
+                min-[420px]:justify-center
+                sm:h-[52px]
+                sm:gap-3
+                sm:px-6
+                sm:text-[13px]
               "
             >
               <span>Falar com a VELTA</span>
 
-              <span
-                className="
-                  text-[15px]
-                  text-white/65
-                  transition-all
-                  duration-300
-                  group-hover:-translate-y-0.5
-                  group-hover:translate-x-0.5
-                  group-hover:text-white
-                "
-              >
-                ↗
+              <span className="text-white/65">
+                <ArrowUpRight />
               </span>
             </a>
           </motion.div>
@@ -252,6 +305,7 @@ export default function Hero() {
       </div>
 
       {/* DECORATIVE LIGHT */}
+
       <div
         className="
           pointer-events-none
@@ -266,21 +320,6 @@ export default function Hero() {
           via-white/[0.08]
           to-transparent
           lg:block
-        "
-      />
-
-      {/* MOBILE IMAGE CONTRAST */}
-      <div
-        className="
-          pointer-events-none
-          absolute
-          inset-x-0
-          bottom-0
-          h-[35%]
-          bg-gradient-to-t
-          from-[#050505]
-          to-transparent
-          sm:hidden
         "
       />
     </section>
