@@ -81,7 +81,7 @@ export default function Models1() {
         id="modelo-1"
         className="relative min-h-screen w-full overflow-hidden bg-[#050505]"
       >
-        {/* BACKGROUND ORIGINAL */}
+        {/* BACKGROUND */}
         <div className="absolute inset-0">
           <motion.img
             src="/images/models/velta-one.webp"
@@ -97,7 +97,7 @@ export default function Models1() {
               duration: shouldReduceMotion ? 0 : 1.4,
               ease: [0.22, 1, 0.36, 1],
             }}
-            className="absolute inset-0 h-full w-full object-cover object-center"
+            className="absolute inset-0 h-full w-full object-cover object-center max-sm:inset-x-0 max-sm:inset-y-auto max-sm:top-[12%] max-sm:h-[75%] max-sm:object-contain max-sm:object-right sm:inset-0 sm:h-full sm:object-cover sm:object-center"
           />
 
           <div className="absolute inset-0 bg-black/10" />
@@ -113,7 +113,7 @@ export default function Models1() {
           <div className="absolute left-[35%] top-[45%] h-[420px] w-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-600/[0.045] blur-[140px]" />
         </div>
 
-        {/* CONTEÚDO ORIGINAL */}
+        {/* CONTEÚDO */}
         <div className="relative z-10 mx-auto flex min-h-screen w-full max-w-[1500px] flex-col px-6 sm:px-10 lg:px-16">
           <motion.div
             variants={fadeUp}
@@ -171,7 +171,7 @@ export default function Models1() {
                 personalidade.
               </motion.p>
 
-              {/* AUTONOMIA E VELOCIDADE DA HOME */}
+              {/* AUTONOMIA E VELOCIDADE */}
               <motion.div
                 variants={fadeUp}
                 initial="hidden"
