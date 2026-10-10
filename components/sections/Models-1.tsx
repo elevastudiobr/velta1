@@ -97,7 +97,24 @@ export default function Models1() {
               duration: shouldReduceMotion ? 0 : 1.4,
               ease: [0.22, 1, 0.36, 1],
             }}
-            className="absolute inset-0 h-full w-full object-cover object-center max-sm:inset-x-0 max-sm:inset-y-auto max-sm:top-[12%] max-sm:h-[75%] max-sm:object-contain max-sm:object-right sm:inset-0 sm:h-full sm:object-cover sm:object-center"
+            className="absolute inset-0 hidden h-full w-full object-cover object-center sm:block"
+          />
+
+          <motion.img
+            src="/images/models/velta-one-mobile.webp"
+            alt="Scooter elétrica VELTA ONE"
+            initial={
+              shouldReduceMotion
+                ? { opacity: 1, scale: 1 }
+                : { opacity: 0, scale: 1.035 }
+            }
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{
+              duration: shouldReduceMotion ? 0 : 1.4,
+              ease: [0.22, 1, 0.36, 1],
+            }}
+            className="absolute inset-0 h-full w-full object-cover object-center sm:hidden"
           />
 
           <div className="absolute inset-0 bg-black/10" />

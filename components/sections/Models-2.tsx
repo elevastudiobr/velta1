@@ -96,7 +96,24 @@ export default function Models2() {
               duration: shouldReduceMotion ? 0 : 1.4,
               ease: [0.22, 1, 0.36, 1],
             }}
-            className="absolute inset-0 h-full w-full object-cover object-center"
+            className="absolute inset-0 hidden h-full w-full object-cover object-center sm:block"
+          />
+
+          <motion.img
+            src="/images/models/velta-x-mobile.webp"
+            alt="VELTA X"
+            initial={
+              shouldReduceMotion
+                ? { opacity: 1, scale: 1 }
+                : { opacity: 0, scale: 1.035 }
+            }
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{
+              duration: shouldReduceMotion ? 0 : 1.4,
+              ease: [0.22, 1, 0.36, 1],
+            }}
+            className="absolute inset-0 h-full w-full object-cover object-center sm:hidden"
           />
 
           <div className="absolute inset-0 bg-black/10" />
